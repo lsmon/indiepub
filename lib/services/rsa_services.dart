@@ -25,7 +25,7 @@ class RsaServices {
 
       final appPrivateKey = await resources.loadString('resources/indiepub.pem');
       final appPublicKey = await resources.loadString('resources/public_indiepub.pem');
-      final serverPublicKey = await resources.loadString('resources/indieback.pub');
+      final serverPublicKey = await resources.loadString('resources/public_indieback.pem');
 
       _appPrivateKey = _parsePrivateKey(appPrivateKey);
       _appPublicKey = _parsePublicKey(appPublicKey);

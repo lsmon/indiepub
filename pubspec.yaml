@@ -73,7 +73,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - resources/indieback.pub
+    - resources/public_indieback.pem
     - resources/indiepub.pem
     - resources/public_indiepub.pem
   #   - images/a_dot_burr.jpeg
