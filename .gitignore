@@ -33,6 +33,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+analysis_options.yaml
+devtools_options.yaml
+pubspec.lock
+.metadata
 
 # Symbolication related
 app.*.symbols
@@ -50,3 +54,9 @@ app.*.map.json
 /macos/
 /web/
 /windows/
+/pubspec.yaml
+analysis_options.yaml
+devtools_options.yaml
+devtools_options.yaml
+.vscode/settings.json
+.vscode
