@@ -38,7 +38,7 @@ dependencies:
   sqflite: ^2.3.0
   path_provider: ^2.1.0
   path: ^1.8.3
-  crypto: ^3.0.2
+  crypto: ^3.0.3
   provider: ^6.0.0
   flutter_stripe: ^11.5.0
   syncfusion_flutter_charts: ^29.1.39
@@ -48,6 +48,8 @@ dependencies:
   logger: ^2.0.2
   pointycastle: ^4.0.0
   asn1lib: ^1.6.4
+  basic_utils: ^5.8.2
+  fast_rsa: ^3.8.4
 
 dev_dependencies:
   flutter_test:
@@ -73,9 +75,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - resources/public_indieback.pem
-    - resources/indiepub.pem
-    - resources/public_indiepub.pem
+    - resources/indieback_pub.pem
+    - resources/indiefront_pub.pem
+    - resources/indiefront_prv.pem
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

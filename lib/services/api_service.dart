@@ -5,7 +5,7 @@ import 'package:indiepub/models/event.dart';
 import 'package:indiepub/models/post.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:8080'; // Replace with your API
+  static const String baseUrl = 'http://10.0.0.16:8008'; // Replace with your API
 
   ApiService();
 

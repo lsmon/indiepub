@@ -11,8 +11,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late final AuthService _auth;
   final _formKey = GlobalKey<FormState>();
-  String _email = '';
-  String _password = '';
+  String _email = 'lsmon714@gmail.com';
+  String _password = 'password';
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,17 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Email'),
+                keyboardType: TextInputType.emailAddress,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                initialValue: 'lsmon714@gmail.com',
                 onChanged: (val) => _email = val,
                 validator: (val) => val!.isEmpty ? 'Enter email' : null,
               ),
               TextFormField(
                 decoration: const InputDecoration(labelText: 'Password'),
                 obscureText: true,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                initialValue: 'password',
                 onChanged: (val) => _password = val,
                 validator: (val) => val!.isEmpty ? 'Enter password' : null,
               ),

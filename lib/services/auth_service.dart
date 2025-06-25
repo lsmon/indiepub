@@ -37,20 +37,11 @@ class AuthService {
   Future<String?> login(BuildContext context, String email, String password) async {
     _rsaServices.initialize(context);
     _ensureInitialized();
-    final encryptedEmail = base64Encode(
-      _rsaServices.encrypt(
-        Uint8List.fromList(utf8.encode(email)), 
-        _rsaServices.getServerPublicKey()!));
-    final encryptedPassword = base64Encode(
-      _rsaServices.encrypt(
-        Uint8List.fromList(utf8.encode(password)), 
-        _rsaServices.getServerPublicKey()!));
-    final signature = base64Encode(
-      _rsaServices.sign(
-        Uint8List.fromList(utf8.encode(encryptedPassword)),
-        _rsaServices.getAppPrivateKey()!));
+    final encryptedEmail = await _rsaServices.encrypt(email, _rsaServices.getServerPublicKey()!);
+    final encryptedPassword = await _rsaServices.encrypt(password, _rsaServices.getServerPublicKey()!);
+    final signature = await _rsaServices.sign (password, _rsaServices.getAppPrivateKey()!);
     try {
-      final user = await _apiService.login(encryptedEmail, '$encryptedPassword:$signature');
+      final user = await _apiService.login('$encryptedEmail', '$encryptedPassword:$signature');
       if (user != null) {
         await _dbService.insertUser(user);
         _currentUserId = user.id;
@@ -66,22 +57,11 @@ class AuthService {
   Future<String?> signup(BuildContext context, String email, String password, String role) async {
     _rsaServices.initialize(context);
     _ensureInitialized();
-    final encryptedEmail = base64Encode(
-      _rsaServices.encrypt(
-        Uint8List.fromList(utf8.encode(email)), 
-        _rsaServices.getServerPublicKey()!));
-    final encryptedPassword = base64Encode(
-      _rsaServices.encrypt(
-        Uint8List.fromList(utf8.encode(password)), 
-        _rsaServices.getServerPublicKey()!));
-    final encryptedRole = base64Encode(
-      _rsaServices.encrypt(
-        Uint8List.fromList(utf8.encode(role)), 
-        _rsaServices.getServerPublicKey()!));
-    final signature = base64Encode(
-      _rsaServices.sign(
-        Uint8List.fromList(utf8.encode(encryptedPassword)),
-        _rsaServices.getAppPrivateKey()!));
+    final encryptedEmail = await _rsaServices.encrypt(email, _rsaServices.getServerPublicKey()!);
+    final encryptedPassword = await _rsaServices.encrypt(password, _rsaServices.getServerPublicKey()!);
+    final signature = await _rsaServices.sign (password, _rsaServices.getAppPrivateKey()!);
+    
+    final encryptedRole = await _rsaServices.encrypt(role, _rsaServices.getServerPublicKey()!);
     
     try {
       final user = await _apiService.signup(encryptedEmail, '$encryptedPassword:$signature', encryptedRole);
@@ -95,5 +75,7 @@ class AuthService {
       logger.e(e);
       return null;
     }
+  
+    return '';
   }
 }
